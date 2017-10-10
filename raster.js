@@ -17,6 +17,7 @@
             a.href = canvas.toDataURL('image/png');
             document.body.appendChild(a);
             a.click();
+        };
     }
 
     function setHeaders(el) {
