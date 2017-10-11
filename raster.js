@@ -5,19 +5,7 @@
         let str = getOuterHTML(element);
         let xml = prependXML(str);
         let image = saveImage(xml);
-        image.onload = function () {
-            let canvas = document.createElement('canvas');
-            canvas.width = image.width;
-            canvas.height = image.height;
-            let context = canvas.getContext('2d');
-            context.drawImage(image, 0, 0);
-
-            let a = document.createElement('a');
-            a.download = 'image.png';
-            a.href = canvas.toDataURL('image/png');
-            document.body.appendChild(a);
-            a.click();
-        };
+        return image;
     }
 
     function setHeaders(el) {
@@ -43,7 +31,23 @@
 
     function saveImage(xml) {
         let image = new Image();
-        image.src = 'data:image/svg+xml;base64,' + global.btoa(unescape(encodeURIComponent(xml)));
+        image.onload = function () {
+            console.log('loaded');
+            let canvas = document.createElement('canvas');
+            canvas.width = image.width;
+            canvas.height = image.height;
+            let context = canvas.getContext('2d');
+            context.drawImage(image, 0, 0);
+
+            let a = document.createElement('a');
+            a.download = 'image.png';
+            a.href = canvas.toDataURL('image/png');
+            document.body.appendChild(a);
+            a.click();
+        };
+        //image.src = 'data:image/svg+xml;base64,' + global.btoa(unescape(encodeURIComponent(xml)));
+        image.src = 'data:image/svg+xml;base64,' + global.btoa(xml);
         return image;
     }
+
 })(window);
