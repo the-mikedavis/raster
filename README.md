@@ -3,6 +3,7 @@
 SVG to PNG rasterizer:
 
 - minimalistic
+- client-side
 - free as in speech
 - inline styling (only)
 
