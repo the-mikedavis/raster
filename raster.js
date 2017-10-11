@@ -1,10 +1,16 @@
 (function (global) {
 
-    global.rasterize = function (element) {
+    var width = 0, height = 0, name = "img";
+
+    global.rasterize = function (element, n) {
+        name = n;
+        let box = element.getBoundingClientRect();
+        width = box.width;
+        height = box.height;
         setHeaders(element);
         let str = getOuterHTML(element);
-        let xml = prependXML(str);
-        let image = saveImage(xml);
+        //let xml = prependXML(str);
+        let image = saveImage(str);
         return image;
     }
 
@@ -32,15 +38,14 @@
     function saveImage(xml) {
         let image = new Image();
         image.onload = function () {
-            console.log('loaded');
             let canvas = document.createElement('canvas');
-            canvas.width = image.width;
-            canvas.height = image.height;
+            canvas.width = width;
+            canvas.height = height;
             let context = canvas.getContext('2d');
             context.drawImage(image, 0, 0);
 
             let a = document.createElement('a');
-            a.download = 'image.png';
+            a.download = name + '.png';
             a.href = canvas.toDataURL('image/png');
             document.body.appendChild(a);
             a.click();
