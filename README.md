@@ -1,4 +1,4 @@
-# raster: _a minimalist SVG to PNG inline rasterizer_
+# raster: _a minimalistic, free as in speech and beer, SVG to PNG inline rasterizer_
 
 I generate a few `svg`s with d3.js dynamically. What if someone wants to save that `svg`?.
 
