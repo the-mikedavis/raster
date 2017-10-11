@@ -4,7 +4,6 @@ SVG to PNG rasterizer:
 
 - minimalistic
 - free as in speech
-- free as in beer
 - inline styling (only)
 
 I generate a few `svg`s with d3.js dynamically. What if someone wants to save that `svg`?.
